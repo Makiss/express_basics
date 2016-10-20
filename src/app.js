@@ -3,20 +3,31 @@
 var express = require('express'),
 	  posts = require('./mock/posts.json');
 
-var app = express();
-
-app.get('/', function(req, res){
-	res.send("<h1>I am loving Treehouse!</h1>");
+var postList = Object.keys(posts).map(function(value) {
+  return posts[value];
 });
 
-app.get('/blog/:title?', function(req, res){ 
+var app = express();
+
+app.use('/static', express.static(__dirname + '/public'));
+
+app.set('view engine', 'jade');
+app.set('views', __dirname + '/templates');
+
+app.get('/', function(req, res){
+  var path = req.path;
+  // res.locals.path = path;
+	res.render('index', {path: path});
+});
+
+app.get('/blog/:title?', function(req, res){
 	var title = req.params.title;
 	if (title === undefined) {
 		res.status(503);
-		res.send("This page is under construction!")
+		res.render('blog', {posts: postList});
 	} else {
-		var post = posts[title];
-		res.send(post);
+		var post = posts[title] || {};
+		res.render('post', {post: post});
 	}
 });
 
