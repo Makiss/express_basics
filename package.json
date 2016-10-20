@@ -8,14 +8,11 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/hdngr/treehouse-express-basics.git"
+    "url": "git@github.com:Makiss/express_basics.git"
   },
   "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/hdngr/treehouse-express-basics/issues"
-  },
-  "homepage": "https://github.com/hdngr/treehouse-express-basics#readme",
+  "homepage": "git@github.com:Makiss/express_basics.git",
   "dependencies": {
     "express": "^4.14.0",
     "jade": "^1.11.0"
